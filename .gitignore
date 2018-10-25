@@ -1,0 +1,8 @@
+.data
+.db
+.env
+node_modules
+components/routes/_*
+.sass-cache/*
+.DS_Store
+assets/tmp
