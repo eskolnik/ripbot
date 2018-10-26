@@ -1,7 +1,6 @@
 var Jimp = require('jimp');
 var fs = require('fs');
 var getURL = require('../env_helper');
-var debug = require('debug')('botkit:main');
 
 module.exports = function(controller) {
   const ripRegex = /rip <@(\w+)(\|\w+)?>/
@@ -26,14 +25,14 @@ module.exports = function(controller) {
 
         const tombstonePath = assetPath + "/rip.png";
 
-        debug(`Loading images into JIMP: ${profileImagePath} ${tombstonePath}`);
+        console.log(`Loading images into JIMP: ${profileImagePath} ${tombstonePath}`);
 
         Promise.all([
           Jimp.read(tombstonePath),
           Jimp.read(profileImagePath)
         ])
         .then(([tombstoneImg, profileImage]) => {
-          debug("images loaded, compositing new image...");
+          console.log("images loaded, compositing new image...");
           return tombstoneImg
             .composite(profileImage, 45, 90)
             .write(newPath);
